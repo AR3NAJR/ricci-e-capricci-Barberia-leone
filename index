@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="it" data-mode="uomo" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ricci e Capricci & Barberia Leone | Barberia e Salone Premium a Lurago d'Erba</title>
+<meta name="description" content="Barberia e salone di parrucchieria a Lurago d'Erba (CO). Taglio moda, barba tradizionale, colore, cheratina. Stile rustico-chic, cura artigianale, prenota ora su Fresha o WhatsApp.">
+<meta name="keywords" content="barbiere Lurago d'Erba, parrucchiere Lurago d'Erba, barberia Como, salone capelli Como, taglio barba, cheratina, colore capelli">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#120f0c">
+<link rel="canonical" href="https://www.ricciecapricci-barberialeone.it/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="business.business">
+<meta property="og:site_name" content="Ricci e Capricci & Barberia Leone">
+<meta property="og:title" content="Ricci e Capricci & Barberia Leone | Lurago d'Erba">
+<meta property="og:description" content="L'arte del taglio e della cura dei capelli a Lurago d'Erba. Barberia uomo e salone donna in un unico indirizzo rustico-chic.">
+<meta property="og:locale" content="it_IT">
+<meta property="og:image" content="https://www.ricciecapricci-barberialeone.it/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ricci e Capricci & Barberia Leone | Lurago d'Erba">
+<meta name="twitter:description" content="L'arte del taglio e della cura dei capelli a Lurago d'Erba.">
+
+<!-- Favicon placeholder (monogramma dorato, sostituire con logo reale) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%23120f0c' stroke='%23c9a24d' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23c9a24d' text-anchor='middle'%3ERC%3C/text%3E%3C/svg%3E">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Playfair Display"', 'serif'],
+          script: ['"Cormorant Garamond"', 'serif'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink: '#120f0c',
+          ink2: '#1a1510',
+          surface: '#211a14',
+          leather: '#5c3a22',
+          beige: '#e7d7b6',
+          cream: '#f6f1e8',
+        },
+        boxShadow: {
+          soft: '0 20px 60px -20px rgba(0,0,0,.55)',
+        },
+      },
+    },
+  };
+</script>
+
+<!-- Alpine.js (CDN) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+<style>
+  /* =====================================================================
+     DESIGN SYSTEM — RICCI E CAPRICCI & BARBERIA LEONE
+     Palette: nero antracite / legno / cuoio / oro satinato / bronzo / rame
+     Il toggle Uomo/Donna nell'header cambia --accent e --accent-2 su
+     :root: tutti gli elementi con "mode-fx" seguono il cambio con una
+     transizione morbida. Per modificare i colori, agire qui sotto.
+     ===================================================================== */
+  :root{
+    --accent: #c9a24d;      /* oro satinato — modalità BARBERIA UOMO */
+    --accent-2: #9c7a3f;    /* bronzo */
+    --accent-soft: rgba(201,162,77,.14);
+    --ring: rgba(201,162,77,.35);
+  }
+  html[data-mode="donna"]{
+    --accent: #b8672f;      /* rame — modalità SALONE DONNA */
+    --accent-2: #caa46b;    /* bronzo caldo */
+    --accent-soft: rgba(184,103,47,.16);
+    --ring: rgba(184,103,47,.35);
+  }
+  *{ -webkit-tap-highlight-color: transparent; }
+  html{ background:#120f0c; }
+  body{ background:#120f0c; }
+  ::selection{ background: var(--accent); color:#120f0c; }
+
+  .mode-fx{ transition: color .6s cubic-bezier(.4,0,.2,1), background-color .6s cubic-bezier(.4,0,.2,1), border-color .6s cubic-bezier(.4,0,.2,1), box-shadow .6s cubic-bezier(.4,0,.2,1), background-image .6s cubic-bezier(.4,0,.2,1); }
+
+  /* Focus visibile per accessibilità */
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  [x-cloak]{ display:none !important; }
+
+  /* Scrollbar discreta */
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:#120f0c; }
+  ::-webkit-scrollbar-thumb{ background:#3a2f22; border-radius:10px; }
+
+  /* Texture "grana" molto discreta per profondità premium */
+  .grain{ position:relative; isolation:isolate; }
+  .grain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity:.05;
+    mix-blend-mode:overlay;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  /* Reveal on scroll */
+  .reveal{ opacity:0; transform: translateY(28px); filter: blur(6px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1), filter 1s cubic-bezier(.16,1,.3,1); }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); filter: blur(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none !important; opacity:1 !important; transform:none !important; filter:none !important; }
+    html{ scroll-behavior:auto !important; }
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
+
+  /* Bottoni */
+  .btn-gold{
+    background-image: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color:#151009;
+    box-shadow: 0 10px 30px -8px var(--accent-soft), 0 2px 0 rgba(255,255,255,.15) inset;
+  }
+  .btn-gold:hover{ filter: brightness(1.08); transform: translateY(-2px); }
+  .btn-gold:active{ transform: translateY(0); }
+  .btn-outline{
+    border:1px solid rgba(246,241,232,.28);
+    color:#f6f1e8;
+    background: rgba(246,241,232,.03);
+  }
+  .btn-outline:hover{ border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+
+  /* Card lift premium */
+  .card-lift{ transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s cubic-bezier(.16,1,.3,1), border-color .55s ease; }
+  .card-lift:hover{ transform: translateY(-8px); box-shadow: 0 30px 70px -25px rgba(0,0,0,.65); border-color: var(--ring); }
+
+  /* Tilt 3D leggero (attivato via JS su elementi .tilt) */
+  .tilt{ transform-style:preserve-3d; transition: transform .35s cubic-bezier(.16,1,.3,1); will-change:transform; }
+
+  /* Cornici decorative agli angoli — motivo firma del brand */
+  .corner-frame{ position:relative; }
+  .corner-frame::before, .corner-frame::after,
+  .corner-frame > .cf-tl, .corner-frame > .cf-br{ content:""; position:absolute; width:26px; height:26px; border-color:var(--accent); opacity:.85; }
+  .corner-frame::before{ top:-1px; left:-1px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .corner-frame::after{ bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+  /* Bagliori ambientali hero */
+  .glow{ position:absolute; border-radius:9999px; filter: blur(70px); pointer-events:none; }
+  @keyframes floaty{ 0%,100%{ transform: translateY(0) translateX(0);} 50%{ transform: translateY(-18px) translateX(10px);} }
+  .float-slow{ animation: floaty 9s ease-in-out infinite; }
+  .float-slower{ animation: floaty 13s ease-in-out infinite; }
+
+  /* Pulse molto delicato per il floating button mobile */
+  @keyframes softpulse{
+    0%,100%{ box-shadow: 0 0 0 0 var(--accent-soft); }
+    50%{ box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+  }
+  .pulse-soft{ animation: softpulse 2.6s ease-in-out infinite; }
+
+  /* Linea scroll indicator hero */
+  @keyframes scrolldrop{ 0%{ transform: translateY(-6px); opacity:0; } 40%{ opacity:1; } 100%{ transform: translateY(14px); opacity:0; } }
+  .scroll-dot{ animation: scrolldrop 1.8s ease-in-out infinite; }
+
+  /* Stelle animate */
+  @keyframes starpop{ from{ transform: scale(.4) rotate(-8deg); opacity:0;} to{ transform: scale(1) rotate(0); opacity:1;} }
+  .star-anim{ animation: starpop .5s cubic-bezier(.34,1.56,.64,1) both; }
+
+  /* Segmented switch pill */
+  .seg-thumb{ transition: left .5s cubic-bezier(.16,1,.3,1), right .5s cubic-bezier(.16,1,.3,1); }
+
+  /* Mappa in tonalità scura */
+  .map-dark{ filter: grayscale(1) invert(92%) contrast(90%) brightness(92%); }
+
+  /* Linee eyebrow */
+  .eyebrow{ letter-spacing:.22em; }
+
+  /* Divisore a foglia */
+  .rule{ height:1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+</style>
+</head>
+
+<body class="bg-ink text-cream font-sans antialiased">
+
+  <!-- Skip link per accessibilità -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-[var(--accent)] focus:text-black focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-semibold">Vai al contenuto principale</a>
+
+  <!-- =====================================================================
+       HEADER — sticky, glass, selettore Uomo/Donna, CTA
+       ===================================================================== -->
+  <header
+    x-data="{ open:false, scrolled:false }"
+    x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 24, { passive:true })"
+    :class="scrolled ? 'bg-ink/80 border-white/10 shadow-[0_10px_40px_-20px_rgba(0,0,0,.8)]' : 'bg-ink/30 border-white/5'"
+    class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b transition-all duration-500"
+  >
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+      <div class="flex items-center justify-between h-[72px] md:h-20">
+
+        <!-- Logo -->
+        <a href="#top" class="flex items-center gap-3 group shrink-0" aria-label="Ricci e Capricci & Barberia Leone — Home">
+          <span class="grid place-items-center w-11 h-11 rounded-full border border-[var(--accent)]/60 text-[var(--accent)] mode-fx group-hover:rotate-[18deg] transition-transform duration-500">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="6" cy="6" r="2.6"></circle>
+              <circle cx="6" cy="18" r="2.6"></circle>
+              <path d="M20 4 8.6 15.4"></path>
+              <path d="M8.6 8.6 20 20"></path>
+            </svg>
+          </span>
+          <span class="leading-tight">
+            <span class="block font-display text-lg sm:text-xl tracking-wide text-cream">Ricci e Capricci</span>
+            <span class="block font-script italic text-[11px] sm:text-xs text-beige/70 -mt-0.5">&amp; Barberia Leone</span>
+          </span>
+        </a>
+
+        <!-- Nav desktop -->
+        <nav class="hidden lg:flex items-center gap-9 text-[13px] tracking-wide uppercase text-cream/75" aria-label="Sezioni del sito">
+          <a href="#esperienza" class="hover:text-[var(--accent)] mode-fx transition-colors">Esperienza</a>
+          <a href="#servizi" class="hover:text-[var(--accent)] mode-fx transition-colors">Servizi</a>
+          <a href="#recensioni" class="hover:text-[var(--accent)] mode-fx transition-colors">Recensioni</a>
+          <a href="#contatti" class="hover:text-[var(--accent)] mode-fx transition-colors">Dove Siamo</a>
+        </nav>
+
+        <!-- Switcher + CTA desktop -->
+        <div class="hidden md:flex items-center gap-4">
+          <!-- Selettore dinamico BARBERIA UOMO / SALONE DONNA -->
+          <div class="relative inline-flex items-center rounded-full p-1 bg-white/[.04] border border-white/10" role="tablist" aria-label="Scegli il salone">
+            <span class="seg-thumb absolute inset-y-1 rounded-full mode-fx"
+                  style="background-image:linear-gradient(135deg,var(--accent),var(--accent-2));"
+                  :style="$store.salon.mode==='uomo' ? 'left:4px;width:calc(50% - 6px);background-image:linear-gradient(135deg,var(--accent),var(--accent-2));' : 'left:calc(50% + 2px);width:calc(50% - 6px);background-image:linear-gradient(135deg,var(--accent),var(--accent-2));'"></span>
+            <button type="button" @click="$store.salon.setMode('uomo')" role="tab" :aria-selected="$store.salon.mode==='uomo'"
+                    class="relative z-10 px-4 py-1.5 text-[11px] font-semibold tracking-widest uppercase rounded-full transition-colors duration-500"
+                    :class="$store.salon.mode==='uomo' ? 'text-ink' : 'text-cream/60 hover:text-cream'">
+              Barberia Uomo
+            </button>
+            <button type="button" @click="$store.salon.setMode('donna')" role="tab" :aria-selected="$store.salon.mode==='donna'"
+                    class="relative z-10 px-4 py-1.5 text-[11px] font-semibold tracking-widest uppercase rounded-full transition-colors duration-500"
+                    :class="$store.salon.mode==='donna' ? 'text-ink' : 'text-cream/60 hover:text-cream'">
+              Salone Donna
+            </button>
+          </div>
+
+          <a href="#prenota" class="btn-gold mode-fx px-5 py-2.5 rounded-full text-[12px] font-bold tracking-widest uppercase transition-all duration-300">
+            Prenota Ora
+          </a>
+        </div>
+
+        <!-- Hamburger mobile -->
+        <button type="button" @click="open = !open" class="md:hidden grid place-items-center w-11 h-11 rounded-full border border-white/15 text-cream" :aria-expanded="open" aria-controls="mobile-menu" aria-label="Apri il menu">
+          <svg x-show="!open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <svg x-show="open" x-cloak width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu overlay -->
+    <div id="mobile-menu" x-show="open" x-cloak
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+         class="md:hidden fixed inset-0 top-[72px] bg-ink/98 backdrop-blur-xl border-t border-white/10 z-40 overflow-y-auto">
+      <div class="px-6 py-8 flex flex-col gap-8">
+
+        <div class="relative inline-flex items-center rounded-full p-1 bg-white/[.05] border border-white/10 self-start" role="tablist" aria-label="Scegli il salone">
+          <span class="seg-thumb absolute inset-y-1 rounded-full mode-fx"
+                :style="$store.salon.mode==='uomo' ? 'left:4px;width:calc(50% - 6px);background-image:linear-gradient(135deg,var(--accent),var(--accent-2));' : 'left:calc(50% + 2px);width:calc(50% - 6px);background-image:linear-gradient(135deg,var(--accent),var(--accent-2));'"></span>
+          <button type="button" @click="$store.salon.setMode('uomo')" class="relative z-10 px-4 py-2 text-[11px] font-semibold tracking-widest uppercase rounded-full" :class="$store.salon.mode==='uomo' ? 'text-ink' : 'text-cream/60'">Barberia Uomo</button>
+          <button type="button" @click="$store.salon.setMode('donna')" class="relative z-10 px-4 py-2 text-[11px] font-semibold tracking-widest uppercase rounded-full" :class="$store.salon.mode==='donna' ? 'text-ink' : 'text-cream/60'">Salone Donna</button>
+        </div>
+
+        <nav class="flex flex-col gap-1 text-2xl font-display text-cream/90" aria-label="Sezioni del sito (mobile)">
+          <a @click="open=false" href="#esperienza" class="py-3 border-b border-white/10">Esperienza</a>
+          <a @click="open=false" href="#servizi" class="py-3 border-b border-white/10">Servizi</a>
+          <a @click="open=false" href="#recensioni" class="py-3 border-b border-white/10">Recensioni</a>
+          <a @click="open=false" href="#contatti" class="py-3 border-b border-white/10">Dove Siamo</a>
+        </nav>
+
+        <div class="flex flex-col gap-3 pt-2">
+          <a href="#prenota" @click="open=false" class="btn-gold mode-fx text-center px-6 py-4 rounded-full text-sm font-bold tracking-widest uppercase">Prenota Ora</a>
+          <a href="https://wa.me/390311234567?text=Ciao!%20Vorrei%20prenotare%20un%20appuntamento" target="_blank" rel="noopener" @click="open=false" class="btn-outline text-center px-6 py-4 rounded-full text-sm font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-10 4.5-10 10 0 1.77.46 3.45 1.32 4.94L2 22l5.2-1.36A9.94 9.94 0 0 0 12.04 22c5.5 0 10-4.5 10-10s-4.5-10-10-10Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.09.81.83-3-.2-.31A8.13 8.13 0 1 1 20.14 12a8.1 8.1 0 0 1-8.1 8.1Zm4.47-6.08c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.52.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <!-- =====================================================================
+       HERO — full screen, cinematografico, badge Google, doppia CTA
+       ===================================================================== -->
+  <section id="top" class="relative min-h-[100svh] flex items-center overflow-hidden grain" style="background: radial-gradient(120% 90% at 15% 0%, #241b12 0%, #17120d 46%, #0e0b09 100%);">
+
+    <!-- Bagliori ambientali -->
+    <div class="glow float-slow w-[420px] h-[420px] -top-24 -left-16 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+    <div class="glow float-slower w-[520px] h-[520px] top-1/3 -right-32 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+
+    <!-- Pattern pinstripe sottile, richiama il palo del barbiere -->
+    <div class="absolute inset-0 opacity-[.05] pointer-events-none" style="background-image:repeating-linear-gradient(45deg, var(--accent) 0 2px, transparent 2px 26px); mask-image: linear-gradient(180deg, transparent, black 30%, black 70%, transparent);"></div>
+
+    <!-- Vignette -->
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 22%, transparent 65%, rgba(0,0,0,.75) 100%);"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pt-28 pb-24 w-full">
+      <div class="max-w-3xl">
+
+        <p class="reveal eyebrow font-script italic text-lg sm:text-xl text-[var(--accent)] mode-fx mb-5" style="transition-delay:.05s">
+          Barberia &amp; Salone di Parrucchieria · Lurago d'Erba
+        </p>
+
+        <h1 class="reveal font-display text-[2.6rem] leading-[1.06] sm:text-6xl sm:leading-[1.05] lg:text-[4.2rem] lg:leading-[1.03] font-bold text-cream" style="transition-delay:.15s">
+          L'Arte del Taglio &amp;
+          <span class="italic font-script font-medium text-[var(--accent)] mode-fx">della Cura</span>
+          dei Capelli a Lurago d'Erba
+        </h1>
+
+        <p class="reveal mt-7 text-base sm:text-lg text-cream/70 max-w-xl leading-relaxed" style="transition-delay:.25s">
+          Un indirizzo, due mondi: la barberia tradizionale e il salone contemporaneo. Legno caldo, cuoio vissuto e oro satinato per un'esperienza artigianale che si prende cura di ogni dettaglio, dal primo saluto all'ultima forbiciata.
+        </p>
+
+        <!-- Badge Google -->
+        <div class="reveal mt-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[.04] backdrop-blur-md px-4 py-2.5" style="transition-delay:.32s">
+          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.4 0-13.8 4.1-17.1 10.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.3-5.1l-6.6-5.6C29.6 35 26.9 36 24 36c-5.3 0-9.6-3.1-11.3-7.5l-6.6 5C9.9 39.6 16.4 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.2-4.2 5.6l6.6 5.6C40.9 36.6 44 30.9 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+          <span class="flex items-center gap-0.5" aria-hidden="true">
+            <svg class="star-anim" style="animation-delay:.05s" width="13" height="13" viewBox="0 0 20 20" fill="var(--accent)"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg class="star-anim" style="animation-delay:.12s" width="13" height="13" viewBox="0 0 20 20" fill="var(--accent)"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg class="star-anim" style="animation-delay:.19s" width="13" height="13" viewBox="0 0 20 20" fill="var(--accent)"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg class="star-anim" style="animation-delay:.26s" width="13" height="13" viewBox="0 0 20 20" fill="var(--accent)"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg class="star-anim" style="animation-delay:.33s" width="13" height="13" viewBox="0 0 20 20" fill="var(--accent)"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+          </span>
+          <span class="text-sm text-cream/85"><strong class="text-cream">4.8</strong> · oltre 50 recensioni</span>
+        </div>
+
+        <!-- CTA -->
+        <div class="reveal mt-9 flex flex-col sm:flex-row gap-4" style="transition-delay:.4s">
+          <a href="#prenota" id="prenota" class="btn-gold mode-fx group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+            Prenota su Fresha
+            <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="https://wa.me/390311234567?text=Ciao!%20Vorrei%20prenotare%20un%20appuntamento" target="_blank" rel="noopener" class="btn-outline inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-10 4.5-10 10 0 1.77.46 3.45 1.32 4.94L2 22l5.2-1.36A9.94 9.94 0 0 0 12.04 22c5.5 0 10-4.5 10-10s-4.5-10-10-10Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.09.81.83-3-.2-.31A8.13 8.13 0 1 1 20.14 12a8.1 8.1 0 0 1-8.1 8.1Zm4.47-6.08c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.52.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+            Scrivici su WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-cream/40 z-10">
+      <span class="text-[10px] tracking-[.3em] uppercase">Scorri</span>
+      <span class="w-[1px] h-9 bg-cream/20 relative overflow-hidden">
+        <span class="scroll-dot absolute top-0 left-0 w-full h-2 bg-[var(--accent)] mode-fx"></span>
+      </span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       ESPERIENZA
+       ===================================================================== -->
+  <section id="esperienza" class="relative py-24 sm:py-32 bg-ink2 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+
+        <!-- Visual placeholder — sostituire con fotografia reale dello studio -->
+        <div class="reveal relative order-2 lg:order-1">
+          <div class="tilt corner-frame relative aspect-[4/5] rounded-[2px] overflow-hidden shadow-soft" style="background: linear-gradient(155deg, #2a2016 0%, #1a130d 55%, #241a10 100%);">
+            <div class="grain absolute inset-0"></div>
+            <div class="absolute inset-0 opacity-30" style="background-image: repeating-linear-gradient(115deg, rgba(201,162,77,.12) 0 1px, transparent 1px 34px);"></div>
+            <div class="absolute inset-0 grid place-items-center">
+              <svg width="86" height="86" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1" class="mode-fx opacity-70" aria-hidden="true">
+                <circle cx="6" cy="6" r="2.6"></circle><circle cx="6" cy="18" r="2.6"></circle>
+                <path d="M20 4 8.6 15.4"></path><path d="M8.6 8.6 20 20"></path>
+              </svg>
+            </div>
+            <span class="sr-only">Interno del salone Ricci e Capricci &amp; Barberia Leone — fotografia in aggiornamento</span>
+          </div>
+
+          <!-- Badge sovrapposto -->
+          <div class="reveal absolute -bottom-6 -right-4 sm:right-6 bg-ink border border-[var(--accent)]/40 mode-fx rounded-[2px] px-6 py-5 shadow-soft max-w-[220px]" style="transition-delay:.2s">
+            <p class="font-display text-3xl text-[var(--accent)] mode-fx leading-none">15+</p>
+            <p class="text-[11px] tracking-widest uppercase text-cream/60 mt-2">Anni di esperienza artigiana</p>
+          </div>
+        </div>
+
+        <!-- Testo -->
+        <div class="order-1 lg:order-2">
+          <p class="reveal eyebrow font-script italic text-lg text-[var(--accent)] mode-fx mb-4">L'Esperienza</p>
+          <h2 class="reveal font-display text-4xl sm:text-5xl font-bold leading-[1.1] text-cream">
+            Non un semplice taglio.<br class="hidden sm:block"> Un rito di cura.
+          </h2>
+          <p class="reveal mt-6 text-cream/70 leading-relaxed max-w-xl" style="transition-delay:.1s">
+            Da Ricci e Capricci &amp; Barberia Leone ogni visita è pensata come un momento tutto per te. Legno caldo, pelle vissuta e metallo brunito raccontano uno stile rustico-chic che non insegue le mode, ma le detta. Ogni gesto nasce dall'ascolto e dall'esperienza artigianale dei nostri maestri barbieri e hair stylist.
+          </p>
+
+          <div class="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-7">
+            <div class="reveal flex gap-4" style="transition-delay:.1s">
+              <span class="shrink-0 grid place-items-center w-11 h-11 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c4-6 12-6 16 0"/><path d="M4 12c4 6 12 6 16 0"/><circle cx="12" cy="12" r="2"/></svg>
+              </span>
+              <div>
+                <h3 class="font-display text-lg text-cream font-semibold">Materiali Autentici</h3>
+                <p class="text-sm text-cream/60 mt-1 leading-relaxed">Prodotti selezionati e strumenti professionali, per un risultato che dura nel tempo.</p>
+              </div>
+            </div>
+            <div class="reveal flex gap-4" style="transition-delay:.18s">
+              <span class="shrink-0 grid place-items-center w-11 h-11 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9Z"/></svg>
+              </span>
+              <div>
+                <h3 class="font-display text-lg text-cream font-semibold">Cura Su Misura</h3>
+                <p class="text-sm text-cream/60 mt-1 leading-relaxed">Ogni percorso è costruito attorno al tuo viso, al tuo stile, alle tue esigenze reali.</p>
+              </div>
+            </div>
+            <div class="reveal flex gap-4" style="transition-delay:.26s">
+              <span class="shrink-0 grid place-items-center w-11 h-11 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 9v10h14V9"/><path d="M9 19v-6h6v6"/></svg>
+              </span>
+              <div>
+                <h3 class="font-display text-lg text-cream font-semibold">Ambiente Accogliente</h3>
+                <p class="text-sm text-cream/60 mt-1 leading-relaxed">Un salone pensato per farti sentire a casa, tra dettagli rustici e atmosfera curata.</p>
+              </div>
+            </div>
+            <div class="reveal flex gap-4" style="transition-delay:.34s">
+              <span class="shrink-0 grid place-items-center w-11 h-11 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><path d="M20 4 8.6 15.4"/><path d="M8.6 8.6 20 20"/></svg>
+              </span>
+              <div>
+                <h3 class="font-display text-lg text-cream font-semibold">Maestria Artigiana</h3>
+                <p class="text-sm text-cream/60 mt-1 leading-relaxed">Anni di esperienza al servizio di un taglio impeccabile, dalla prima all'ultima forbiciata.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SERVIZI — tab dinamiche legate al selettore Uomo/Donna
+       ===================================================================== -->
+  <section id="servizi" class="relative py-24 sm:py-32 bg-ink grain">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+
+      <div class="text-center max-w-2xl mx-auto">
+        <p class="reveal eyebrow font-script italic text-lg text-[var(--accent)] mode-fx mb-4">I Nostri Servizi</p>
+        <h2 class="reveal font-display text-4xl sm:text-5xl font-bold text-cream">Scegli il tuo mondo</h2>
+        <p class="reveal mt-5 text-cream/60" style="transition-delay:.1s">Due anime, un'unica cura del dettaglio.</p>
+      </div>
+
+      <!-- Tab switcher grande -->
+      <div class="reveal mt-12 flex justify-center" style="transition-delay:.15s">
+        <div class="relative inline-flex flex-col xs:flex-row sm:flex-row items-stretch sm:items-center rounded-full sm:rounded-full p-1.5 bg-white/[.04] border border-white/10 gap-1 sm:gap-0 w-full max-w-md sm:w-auto" role="tablist" aria-label="Seleziona categoria di servizi">
+          <span class="seg-thumb hidden sm:block absolute inset-y-1.5 rounded-full mode-fx"
+                :style="$store.salon.mode==='uomo' ? 'left:6px;width:calc(50% - 8px);background-image:linear-gradient(135deg,var(--accent),var(--accent-2));' : 'left:calc(50% + 2px);width:calc(50% - 8px);background-image:linear-gradient(135deg,var(--accent),var(--accent-2));'"></span>
+          <button type="button" @click="$store.salon.setMode('uomo')" role="tab" :aria-selected="$store.salon.mode==='uomo'"
+                  class="relative z-10 flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-colors duration-500"
+                  :class="$store.salon.mode==='uomo' ? 'sm:text-ink text-ink bg-[var(--accent)] sm:bg-transparent' : 'text-cream/60 hover:text-cream'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><path d="M12 16v4M9 20h6"/></svg>
+            Barberia Leone
+          </button>
+          <button type="button" @click="$store.salon.setMode('donna')" role="tab" :aria-selected="$store.salon.mode==='donna'"
+                  class="relative z-10 flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-colors duration-500"
+                  :class="$store.salon.mode==='donna' ? 'sm:text-ink text-ink bg-[var(--accent)] sm:bg-transparent' : 'text-cream/60 hover:text-cream'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 3-3 5-3 8a3 3 0 0 0 6 0c0-3 0-5-3-8Z"/><path d="M12 14v7M9 21h6"/></svg>
+            Ricci e Capricci
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid servizi UOMO -->
+      <div x-cloak x-show="$store.salon.mode==='uomo'"
+           x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+           x-transition:leave="transition ease-in duration-250" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+           class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <article class="tilt card-lift reveal group relative rounded-[3px] p-8 bg-surface border border-white/10 overflow-hidden">
+          <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+          <span class="relative grid place-items-center w-14 h-14 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><path d="M20 4 8.6 15.4"/><path d="M8.6 8.6 20 20"/></svg>
+          </span>
+          <h3 class="relative font-display text-2xl font-semibold text-cream">Taglio Moda</h3>
+          <p class="relative mt-3 text-sm text-cream/60 leading-relaxed">Tagli contemporanei e senza tempo, personalizzati sulla struttura del viso e sullo stile di ogni cliente.</p>
+          <span class="relative inline-block mt-6 text-[11px] tracking-widest uppercase text-[var(--accent)] mode-fx">da &euro;22</span>
+        </article>
+
+        <article class="tilt card-lift reveal group relative rounded-[3px] p-8 bg-surface border border-white/10 overflow-hidden" style="transition-delay:.08s">
+          <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+          <span class="relative grid place-items-center w-14 h-14 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c3-6 4-9 4-13a4 4 0 0 1 8 0c0 4 1 7 4 13"/><path d="M8 20h8"/></svg>
+          </span>
+          <h3 class="relative font-display text-2xl font-semibold text-cream">Barba Tradizionale</h3>
+          <p class="relative mt-3 text-sm text-cream/60 leading-relaxed">Rifinitura, disegno e trattamento della barba con rasoio a mano libera e panni caldi, nel rispetto della tradizione.</p>
+          <span class="relative inline-block mt-6 text-[11px] tracking-widest uppercase text-[var(--accent)] mode-fx">da &euro;15</span>
+        </article>
+
+        <article class="tilt card-lift reveal group relative rounded-[3px] p-8 bg-surface border border-white/10 overflow-hidden" style="transition-delay:.16s">
+          <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+          <span class="relative grid place-items-center w-14 h-14 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 9 7 12 3Z"/></svg>
+          </span>
+          <h3 class="relative font-display text-2xl font-semibold text-cream">Trattamenti Scalp</h3>
+          <p class="relative mt-3 text-sm text-cream/60 leading-relaxed">Percorsi mirati per la salute del cuoio capelluto, tra massaggio, prodotti specifici e benessere profondo.</p>
+          <span class="relative inline-block mt-6 text-[11px] tracking-widest uppercase text-[var(--accent)] mode-fx">da &euro;28</span>
+        </article>
+      </div>
+
+      <!-- Grid servizi DONNA -->
+      <div x-cloak x-show="$store.salon.mode==='donna'"
+           x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+           x-transition:leave="transition ease-in duration-250" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+           class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <article class="tilt card-lift reveal group relative rounded-[3px] p-8 bg-surface border border-white/10 overflow-hidden">
+          <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+          <span class="relative grid place-items-center w-14 h-14 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 9 7 12 3Z"/><path d="M12 13v6"/></svg>
+          </span>
+          <h3 class="relative font-display text-2xl font-semibold text-cream">Trattamento Cheratina</h3>
+          <p class="relative mt-3 text-sm text-cream/60 leading-relaxed">Ricostruzione e lisciatura naturale per capelli disciplinati, lucenti e visibilmente più sani.</p>
+          <span class="relative inline-block mt-6 text-[11px] tracking-widest uppercase text-[var(--accent)] mode-fx">da &euro;80</span>
+        </article>
+
+        <article class="tilt card-lift reveal group relative rounded-[3px] p-8 bg-surface border border-white/10 overflow-hidden" style="transition-delay:.08s">
+          <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+          <span class="relative grid place-items-center w-14 h-14 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a5 5 0 0 0 0 18 2.5 2.5 0 0 0 0-5h1a2 2 0 0 0 0-4h-.5a1.5 1.5 0 0 1 0-3H14a2 2 0 0 0 0-4"/></svg>
+          </span>
+          <h3 class="relative font-display text-2xl font-semibold text-cream">Colore &amp; Piega</h3>
+          <p class="relative mt-3 text-sm text-cream/60 leading-relaxed">Tecniche di colorazione su misura e piega di tendenza, per un risultato naturale e luminoso.</p>
+          <span class="relative inline-block mt-6 text-[11px] tracking-widest uppercase text-[var(--accent)] mode-fx">da &euro;45</span>
+        </article>
+
+        <article class="tilt card-lift reveal group relative rounded-[3px] p-8 bg-surface border border-white/10 overflow-hidden" style="transition-delay:.16s">
+          <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+          <span class="relative grid place-items-center w-14 h-14 rounded-full border border-[var(--accent)]/40 text-[var(--accent)] mode-fx mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg>
+          </span>
+          <h3 class="relative font-display text-2xl font-semibold text-cream">Taglio Spaziale</h3>
+          <p class="relative mt-3 text-sm text-cream/60 leading-relaxed">Un taglio scultoreo e contemporaneo, pensato per chi ama distinguersi con stile.</p>
+          <span class="relative inline-block mt-6 text-[11px] tracking-widest uppercase text-[var(--accent)] mode-fx">da &euro;35</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SOCIAL PROOF — recensioni, carosello automatico
+       ===================================================================== -->
+  <section id="recensioni" class="relative py-24 sm:py-32 bg-ink2 overflow-hidden">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 lg:px-10">
+
+      <div class="text-center">
+        <p class="reveal eyebrow font-script italic text-lg text-[var(--accent)] mode-fx mb-4">Cosa Dicono di Noi</p>
+        <h2 class="reveal font-display text-4xl sm:text-5xl font-bold text-cream">La fiducia dei nostri clienti</h2>
+
+        <div class="reveal mt-7 inline-flex items-center gap-3" style="transition-delay:.1s">
+          <span class="font-display text-4xl text-[var(--accent)] mode-fx">4.8</span>
+          <span class="flex items-center gap-1" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+          </span>
+          <span class="text-sm text-cream/55">Eccellente su Google · +50 recensioni</span>
+        </div>
+      </div>
+
+      <!-- Carosello -->
+      <div class="reveal mt-16" style="transition-delay:.15s"
+           x-data="{
+             active: 0, total: 4, timer: null,
+             start(){ this.timer = setInterval(() => this.next(), 5500); },
+             stop(){ clearInterval(this.timer); },
+             next(){ this.active = (this.active + 1) % this.total; },
+             prev(){ this.active = (this.active - 1 + this.total) % this.total; }
+           }"
+           x-init="start()" @mouseenter="stop()" @mouseleave="start()"
+           class="relative">
+
+        <div class="overflow-hidden rounded-[3px]">
+          <div class="flex transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)]" :style="`transform: translateX(-${active * 100}%)`">
+
+            <!-- Recensione 1 — Monica -->
+            <article class="w-full shrink-0 px-1">
+              <div class="bg-surface border border-white/10 rounded-[3px] p-9 sm:p-12 text-center">
+                <svg class="mx-auto text-[var(--accent)] mode-fx opacity-70" width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 7C6.5 8 4 10.9 4 14.5A4.5 4.5 0 0 0 8.5 19 4 4 0 0 0 12 15c0-2-1.4-3.5-3.3-4C9 9.6 10 8.4 11.6 7.7L9.5 7Zm9 0c-3 1-5.5 3.9-5.5 7.5A4.5 4.5 0 0 0 17.5 19 4 4 0 0 0 21 15c0-2-1.4-3.5-3.3-4 .3-1.4 1.3-2.6 2.9-3.3L18.5 7Z"/></svg>
+                <p class="mt-5 font-display italic text-xl sm:text-2xl text-cream leading-relaxed">Ambiente curato in ogni dettaglio e personale davvero preparato. Sono uscita con un taglio e una piega perfetti, consigliatissimo.</p>
+                <div class="mt-6 flex items-center justify-center gap-1" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                </div>
+                <p class="mt-4 text-sm tracking-widest uppercase text-cream/50">Monica · Cliente Google</p>
+              </div>
+            </article>
+
+            <!-- Recensione 2 — Rosa -->
+            <article class="w-full shrink-0 px-1">
+              <div class="bg-surface border border-white/10 rounded-[3px] p-9 sm:p-12 text-center">
+                <svg class="mx-auto text-[var(--accent)] mode-fx opacity-70" width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 7C6.5 8 4 10.9 4 14.5A4.5 4.5 0 0 0 8.5 19 4 4 0 0 0 12 15c0-2-1.4-3.5-3.3-4C9 9.6 10 8.4 11.6 7.7L9.5 7Zm9 0c-3 1-5.5 3.9-5.5 7.5A4.5 4.5 0 0 0 17.5 19 4 4 0 0 0 21 15c0-2-1.4-3.5-3.3-4 .3-1.4 1.3-2.6 2.9-3.3L18.5 7Z"/></svg>
+                <p class="mt-5 font-display italic text-xl sm:text-2xl text-cream leading-relaxed">Finalmente un salone dove ti ascoltano davvero. Il trattamento alla cheratina ha cambiato i miei capelli, professionalità al top.</p>
+                <div class="mt-6 flex items-center justify-center gap-1" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                </div>
+                <p class="mt-4 text-sm tracking-widest uppercase text-cream/50">Rosa · Cliente Google</p>
+              </div>
+            </article>
+
+            <!-- Recensione 3 — Marco -->
+            <article class="w-full shrink-0 px-1">
+              <div class="bg-surface border border-white/10 rounded-[3px] p-9 sm:p-12 text-center">
+                <svg class="mx-auto text-[var(--accent)] mode-fx opacity-70" width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 7C6.5 8 4 10.9 4 14.5A4.5 4.5 0 0 0 8.5 19 4 4 0 0 0 12 15c0-2-1.4-3.5-3.3-4C9 9.6 10 8.4 11.6 7.7L9.5 7Zm9 0c-3 1-5.5 3.9-5.5 7.5A4.5 4.5 0 0 0 17.5 19 4 4 0 0 0 21 15c0-2-1.4-3.5-3.3-4 .3-1.4 1.3-2.6 2.9-3.3L18.5 7Z"/></svg>
+                <p class="mt-5 font-display italic text-xl sm:text-2xl text-cream leading-relaxed">Barberia top, altro che le solite. Barba fatta col rasoio, panno caldo, un rito vero. Ci torno ogni due settimane.</p>
+                <div class="mt-6 flex items-center justify-center gap-1" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                </div>
+                <p class="mt-4 text-sm tracking-widest uppercase text-cream/50">Marco · Cliente Google</p>
+              </div>
+            </article>
+
+            <!-- Recensione 4 — Manu -->
+            <article class="w-full shrink-0 px-1">
+              <div class="bg-surface border border-white/10 rounded-[3px] p-9 sm:p-12 text-center">
+                <svg class="mx-auto text-[var(--accent)] mode-fx opacity-70" width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 7C6.5 8 4 10.9 4 14.5A4.5 4.5 0 0 0 8.5 19 4 4 0 0 0 12 15c0-2-1.4-3.5-3.3-4C9 9.6 10 8.4 11.6 7.7L9.5 7Zm9 0c-3 1-5.5 3.9-5.5 7.5A4.5 4.5 0 0 0 17.5 19 4 4 0 0 0 21 15c0-2-1.4-3.5-3.3-4 .3-1.4 1.3-2.6 2.9-3.3L18.5 7Z"/></svg>
+                <p class="mt-5 font-display italic text-xl sm:text-2xl text-cream leading-relaxed">Atmosfera fantastica, molto più di un semplice taglio. Attenzione al cliente rara di questi tempi, top di gamma.</p>
+                <div class="mt-6 flex items-center justify-center gap-1" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="var(--accent)" class="mode-fx"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>
+                </div>
+                <p class="mt-4 text-sm tracking-widest uppercase text-cream/50">Manu · Cliente Google</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Frecce -->
+        <button type="button" @click="prev()" aria-label="Recensione precedente" class="hidden sm:grid place-items-center absolute top-1/2 -left-5 -translate-y-1/2 w-11 h-11 rounded-full bg-ink border border-white/15 text-cream hover:border-[var(--accent)] hover:text-[var(--accent)] mode-fx transition-colors">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button type="button" @click="next()" aria-label="Recensione successiva" class="hidden sm:grid place-items-center absolute top-1/2 -right-5 -translate-y-1/2 w-11 h-11 rounded-full bg-ink border border-white/15 text-cream hover:border-[var(--accent)] hover:text-[var(--accent)] mode-fx transition-colors">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+
+        <!-- Dots -->
+        <div class="flex items-center justify-center gap-2 mt-8" role="tablist" aria-label="Seleziona recensione">
+          <button type="button" @click="active=0" role="tab" :aria-selected="active===0" aria-label="Recensione 1" class="h-2 rounded-full transition-all duration-500 mode-fx" :class="active===0 ? 'w-8 bg-[var(--accent)]' : 'w-2 bg-white/20'"></button>
+          <button type="button" @click="active=1" role="tab" :aria-selected="active===1" aria-label="Recensione 2" class="h-2 rounded-full transition-all duration-500 mode-fx" :class="active===1 ? 'w-8 bg-[var(--accent)]' : 'w-2 bg-white/20'"></button>
+          <button type="button" @click="active=2" role="tab" :aria-selected="active===2" aria-label="Recensione 3" class="h-2 rounded-full transition-all duration-500 mode-fx" :class="active===2 ? 'w-8 bg-[var(--accent)]' : 'w-2 bg-white/20'"></button>
+          <button type="button" @click="active=3" role="tab" :aria-selected="active===3" aria-label="Recensione 4" class="h-2 rounded-full transition-all duration-500 mode-fx" :class="active===3 ? 'w-8 bg-[var(--accent)]' : 'w-2 bg-white/20'"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CALL TO ACTION
+       ===================================================================== -->
+  <section class="relative py-24 sm:py-28 grain overflow-hidden" style="background: linear-gradient(155deg,#241a10 0%, #150f0a 60%, #1c140c 100%);">
+    <div class="absolute inset-0 opacity-[.06] pointer-events-none" style="background-image:repeating-linear-gradient(45deg, var(--accent) 0 2px, transparent 2px 26px);"></div>
+    <div class="glow float-slow w-[380px] h-[380px] top-0 left-1/2 -translate-x-1/2 mode-fx" style="background: radial-gradient(closest-side, var(--accent-soft), transparent);"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
+      <p class="reveal eyebrow font-script italic text-lg text-[var(--accent)] mode-fx mb-4">Prenota il tuo Momento</p>
+      <h2 class="reveal font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-cream leading-tight">
+        Il tuo prossimo taglio<br> inizia qui
+      </h2>
+      <p class="reveal mt-6 text-cream/65 text-lg max-w-xl mx-auto" style="transition-delay:.1s">
+        Pochi minuti per prenotare, un'esperienza che ricorderai. Scegli il metodo che preferisci.
+      </p>
+
+      <div class="reveal mt-10 flex flex-col sm:flex-row gap-4 justify-center" style="transition-delay:.18s">
+        <a href="#" class="btn-gold mode-fx inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+          Prenota Ora
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://wa.me/390311234567?text=Ciao!%20Vorrei%20prenotare%20un%20appuntamento" target="_blank" rel="noopener" class="btn-outline inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-10 4.5-10 10 0 1.77.46 3.45 1.32 4.94L2 22l5.2-1.36A9.94 9.94 0 0 0 12.04 22c5.5 0 10-4.5 10-10s-4.5-10-10-10Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.09.81.83-3-.2-.31A8.13 8.13 0 1 1 20.14 12a8.1 8.1 0 0 1-8.1 8.1Zm4.47-6.08c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.52.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <p class="reveal mt-6 text-xs tracking-widest uppercase text-cream/40" style="transition-delay:.24s">Rispondiamo entro poche ore, tutti i giorni</p>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- =====================================================================
+       FOOTER
+       ===================================================================== -->
+  <footer id="contatti" class="relative bg-ink2 border-t border-white/10 pt-20 pb-8">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <a href="#top" class="flex items-center gap-3 mb-5">
+            <span class="grid place-items-center w-10 h-10 rounded-full border border-[var(--accent)]/50 text-[var(--accent)] mode-fx">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><path d="M20 4 8.6 15.4"/><path d="M8.6 8.6 20 20"/></svg>
+            </span>
+            <span class="font-display text-lg text-cream leading-tight">Ricci e Capricci<br><span class="font-script italic text-beige/70 text-sm">&amp; Barberia Leone</span></span>
+          </a>
+          <p class="text-sm text-cream/55 leading-relaxed max-w-xs">Barberia e salone di parrucchieria a Lurago d'Erba (CO). Stile rustico-chic, cura artigianale, servizio su misura.</p>
+
+          <div class="flex items-center gap-3 mt-6">
+            <a href="#" target="_blank" rel="noopener" aria-label="Pagina Facebook" class="grid place-items-center w-10 h-10 rounded-full border border-white/15 text-cream/70 hover:text-[var(--accent)] hover:border-[var(--accent)] mode-fx transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.4c0-.87.24-1.46 1.5-1.46H16.5V4.35C16.24 4.31 15.35 4.24 14.3 4.24c-2.19 0-3.69 1.34-3.69 3.79v2.47H8v3h2.6V21h2.9Z"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Prenota su Fresha" class="grid place-items-center w-10 h-10 rounded-full border border-white/15 text-cream/70 hover:text-[var(--accent)] hover:border-[var(--accent)] mode-fx transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contatti -->
+        <div>
+          <h3 class="text-[11px] tracking-[.25em] uppercase text-cream/45 mb-5">Contatti</h3>
+          <ul class="space-y-4 text-sm text-cream/75">
+            <li class="flex items-start gap-3">
+              <svg class="mt-0.5 shrink-0 text-[var(--accent)] mode-fx" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <span>Via Montello 30<br>22040 Lurago d'Erba (CO)</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="shrink-0 text-[var(--accent)] mode-fx" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.6.6A2 2 0 0 1 22 16.9Z"/></svg>
+              <a href="tel:+390311234567" class="hover:text-[var(--accent)] mode-fx transition-colors">+39 031 123 4567</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="shrink-0 text-[var(--accent)] mode-fx" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+              <a href="mailto:info@ricciecapricci-barberialeone.it" class="hover:text-[var(--accent)] mode-fx transition-colors break-all">info@ricciecapricci-barberialeone.it</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Orari -->
+        <div>
+          <h3 class="text-[11px] tracking-[.25em] uppercase text-cream/45 mb-5">Orari</h3>
+          <ul class="space-y-2.5 text-sm">
+            <li class="flex justify-between text-cream/50"><span>Lunedì</span><span>Chiuso</span></li>
+            <li class="flex justify-between text-cream/75"><span>Martedì – Venerdì</span><span>9:00 – 19:00</span></li>
+            <li class="flex justify-between text-cream/75"><span>Sabato</span><span>8:30 – 18:00</span></li>
+            <li class="flex justify-between text-cream/50"><span>Domenica</span><span>Chiuso</span></li>
+          </ul>
+        </div>
+
+        <!-- Mappa -->
+        <div>
+          <h3 class="text-[11px] tracking-[.25em] uppercase text-cream/45 mb-5">Dove Siamo</h3>
+          <div class="rounded-[3px] overflow-hidden border border-white/10 aspect-[4/3] relative">
+            <iframe
+              class="map-dark w-full h-full"
+              style="border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mappa — Via Montello 30, Lurago d'Erba"
+              src="https://www.google.com/maps?q=Via+Montello+30,+Lurago+d%27Erba+CO&output=embed">
+            </iframe>
+          </div>
+          <a href="https://www.google.com/maps?q=Via+Montello+30,+Lurago+d%27Erba+CO" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-3 text-xs tracking-widest uppercase text-[var(--accent)] mode-fx hover:opacity-80">
+            Apri su Google Maps
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="rule mt-16 mode-fx"></div>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream/40">
+        <p>&copy; 2026 Ricci e Capricci &amp; Barberia Leone. Tutti i diritti riservati. — P.IVA 01234567890</p>
+        <p>Lurago d'Erba (CO) · Italia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       FLOATING BUTTON — mobile only
+       ===================================================================== -->
+  <div id="floating-cta" class="md:hidden fixed bottom-4 inset-x-4 z-50 transition-all duration-500">
+    <a href="#prenota" class="btn-gold pulse-soft mode-fx flex items-center justify-center gap-2 w-full py-4 rounded-full text-sm font-bold tracking-widest uppercase shadow-soft">
+      Prenota Ora
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <!-- =====================================================================
+       SCRIPT — Alpine store, scroll reveal, tilt 3D, parallax, floating CTA
+       ===================================================================== -->
+  <script>
+    // Store globale Alpine: gestisce la modalità BARBERIA UOMO / SALONE DONNA
+    document.addEventListener('alpine:init', () => {
+      Alpine.store('salon', {
+        mode: 'uomo',
+        setMode(m) {
+          this.mode = m;
+          document.documentElement.setAttribute('data-mode', m);
+        }
+      });
+    });
+
+    // Scroll reveal — IntersectionObserver
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || els.length === 0) {
+        els.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      els.forEach(el => io.observe(el));
+    })();
+
+    // Tilt 3D leggero (delegato, evita problemi di timing con Alpine)
+    (function () {
+      const MAX = 6; // gradi massimi di rotazione
+      let current = null;
+      document.addEventListener('mousemove', (e) => {
+        const el = e.target.closest('.tilt');
+        if (!el) {
+          if (current) { current.style.transform = ''; current = null; }
+          return;
+        }
+        current = el;
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rx = (0.5 - py) * MAX;
+        const ry = (px - 0.5) * MAX;
+        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      }, { passive: true });
+      document.addEventListener('mouseleave', () => {
+        if (current) { current.style.transform = ''; current = null; }
+      });
+    })();
+
+    // Parallax leggerissimo sullo sfondo hero
+    (function () {
+      const hero = document.getElementById('top');
+      if (!hero) return;
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < window.innerHeight * 1.2) {
+            hero.style.backgroundPosition = `center ${y * 0.06}px`;
+          }
+          ticking = false;
+        });
+      }, { passive: true });
+    })();
+
+    // Nasconde il pulsante flottante quando la sezione finale/footer è in vista
+    (function () {
+      const cta = document.getElementById('floating-cta');
+      const footer = document.querySelector('footer');
+      if (!cta || !footer || !('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          cta.style.opacity = entry.isIntersecting ? '0' : '1';
+          cta.style.transform = entry.isIntersecting ? 'translateY(120%)' : 'translateY(0)';
+          cta.style.pointerEvents = entry.isIntersecting ? 'none' : 'auto';
+        });
+      }, { threshold: 0.05 });
+      io.observe(footer);
+    })();
+  </script>
+</body>
+</html>
