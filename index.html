@@ -80,7 +80,7 @@
     --ring: rgba(184,103,47,.35);
   }
   *{ -webkit-tap-highlight-color: transparent; }
-  html{ background:#120f0c; }
+  html{ background:#120f0c; scroll-padding-top:96px; }
   body{ background:#120f0c; }
   ::selection{ background: var(--accent); color:#120f0c; }
 
@@ -127,15 +127,18 @@
     background-image: linear-gradient(135deg, var(--accent), var(--accent-2));
     color:#151009;
     box-shadow: 0 10px 30px -8px var(--accent-soft), 0 2px 0 rgba(255,255,255,.15) inset;
+    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, filter .35s ease, background-image .6s ease;
   }
-  .btn-gold:hover{ filter: brightness(1.08); transform: translateY(-2px); }
-  .btn-gold:active{ transform: translateY(0); }
+  .btn-gold:hover{ filter: brightness(1.1); transform: translateY(-2px) scale(1.05); box-shadow: 0 16px 42px -8px var(--accent), 0 2px 0 rgba(255,255,255,.18) inset; }
+  .btn-gold:active{ transform: translateY(0) scale(.98); }
   .btn-outline{
     border:1px solid rgba(246,241,232,.28);
     color:#f6f1e8;
     background: rgba(246,241,232,.03);
+    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, border-color .6s ease, background-color .6s ease;
   }
-  .btn-outline:hover{ border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+  .btn-outline:hover{ border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px) scale(1.05); box-shadow: 0 14px 34px -12px var(--accent); }
+  .btn-outline:active{ transform: translateY(0) scale(.98); }
 
   /* Card lift premium */
   .card-lift{ transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s cubic-bezier(.16,1,.3,1), border-color .55s ease; }
@@ -246,16 +249,21 @@
             </button>
           </div>
 
-          <a href="#prenota" class="btn-gold mode-fx px-5 py-2.5 rounded-full text-[12px] font-bold tracking-widest uppercase transition-all duration-300">
+          <a href="https://www.fresha.com" target="_blank" rel="noopener" class="btn-gold mode-fx px-5 py-2.5 rounded-full text-[12px] font-bold tracking-widest uppercase">
             Prenota Ora
           </a>
         </div>
 
-        <!-- Hamburger mobile -->
-        <button type="button" @click="open = !open" class="md:hidden grid place-items-center w-11 h-11 rounded-full border border-white/15 text-cream" :aria-expanded="open" aria-controls="mobile-menu" aria-label="Apri il menu">
-          <svg x-show="!open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-          <svg x-show="open" x-cloak width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-        </button>
+        <!-- CTA rapida + Hamburger mobile: la prenotazione resta sempre raggiungibile in alto -->
+        <div class="flex items-center gap-2 md:hidden">
+          <a href="https://www.fresha.com" target="_blank" rel="noopener" class="btn-gold mode-fx px-4 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase">
+            Prenota
+          </a>
+          <button type="button" @click="open = !open" class="shrink-0 grid place-items-center w-11 h-11 rounded-full border border-white/15 text-cream" :aria-expanded="open" aria-controls="mobile-menu" aria-label="Apri il menu">
+            <svg x-show="!open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            <svg x-show="open" x-cloak width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -281,8 +289,8 @@
         </nav>
 
         <div class="flex flex-col gap-3 pt-2">
-          <a href="#prenota" @click="open=false" class="btn-gold mode-fx text-center px-6 py-4 rounded-full text-sm font-bold tracking-widest uppercase">Prenota Ora</a>
-          <a href="https://wa.me/390311234567?text=Ciao!%20Vorrei%20prenotare%20un%20appuntamento" target="_blank" rel="noopener" @click="open=false" class="btn-outline text-center px-6 py-4 rounded-full text-sm font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+          <a href="https://www.fresha.com" target="_blank" rel="noopener" @click="open=false" class="btn-gold mode-fx text-center px-6 py-4 rounded-full text-sm font-bold tracking-widest uppercase">Prenota Ora</a>
+          <a href="https://wa.me/39031699639?text=Ciao!%20Vorrei%20informazioni%20per%20un%20appuntamento." target="_blank" rel="noopener" @click="open=false" class="btn-outline text-center px-6 py-4 rounded-full text-sm font-bold tracking-widest uppercase flex items-center justify-center gap-2">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-10 4.5-10 10 0 1.77.46 3.45 1.32 4.94L2 22l5.2-1.36A9.94 9.94 0 0 0 12.04 22c5.5 0 10-4.5 10-10s-4.5-10-10-10Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.09.81.83-3-.2-.31A8.13 8.13 0 1 1 20.14 12a8.1 8.1 0 0 1-8.1 8.1Zm4.47-6.08c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.52.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
             WhatsApp
           </a>
@@ -340,11 +348,11 @@
 
         <!-- CTA -->
         <div class="reveal mt-9 flex flex-col sm:flex-row gap-4" style="transition-delay:.4s">
-          <a href="#prenota" id="prenota" class="btn-gold mode-fx group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+          <a href="https://www.fresha.com" target="_blank" rel="noopener" class="btn-gold mode-fx group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold tracking-widest uppercase">
             Prenota su Fresha
             <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a href="https://wa.me/390311234567?text=Ciao!%20Vorrei%20prenotare%20un%20appuntamento" target="_blank" rel="noopener" class="btn-outline inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+          <a href="https://wa.me/39031699639?text=Ciao!%20Vorrei%20informazioni%20per%20un%20appuntamento." target="_blank" rel="noopener" class="btn-outline inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold tracking-widest uppercase">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-10 4.5-10 10 0 1.77.46 3.45 1.32 4.94L2 22l5.2-1.36A9.94 9.94 0 0 0 12.04 22c5.5 0 10-4.5 10-10s-4.5-10-10-10Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.09.81.83-3-.2-.31A8.13 8.13 0 1 1 20.14 12a8.1 8.1 0 0 1-8.1 8.1Zm4.47-6.08c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.52.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
             Scrivici su WhatsApp
           </a>
@@ -368,18 +376,21 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
       <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
 
-        <!-- Visual placeholder — sostituire con fotografia reale dello studio -->
+        <!-- Fotografia dello studio (sostituibile con scatto reale del salone) -->
         <div class="reveal relative order-2 lg:order-1">
-          <div class="tilt corner-frame relative aspect-[4/5] rounded-[2px] overflow-hidden shadow-soft" style="background: linear-gradient(155deg, #2a2016 0%, #1a130d 55%, #241a10 100%);">
+          <div class="tilt corner-frame relative aspect-[4/5] rounded-[10px] overflow-hidden shadow-soft" style="background: linear-gradient(155deg, #2a2016 0%, #1a130d 55%, #241a10 100%);">
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1000&auto=format&fit=crop"
+              alt="Interno rustico-chic del salone Ricci e Capricci &amp; Barberia Leone, legno caldo e dettagli in cuoio"
+              loading="lazy"
+              width="1000"
+              height="1250"
+              class="absolute inset-0 w-full h-full object-cover"
+              onerror="this.remove()"
+            >
             <div class="grain absolute inset-0"></div>
-            <div class="absolute inset-0 opacity-30" style="background-image: repeating-linear-gradient(115deg, rgba(201,162,77,.12) 0 1px, transparent 1px 34px);"></div>
-            <div class="absolute inset-0 grid place-items-center">
-              <svg width="86" height="86" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1" class="mode-fx opacity-70" aria-hidden="true">
-                <circle cx="6" cy="6" r="2.6"></circle><circle cx="6" cy="18" r="2.6"></circle>
-                <path d="M20 4 8.6 15.4"></path><path d="M8.6 8.6 20 20"></path>
-              </svg>
-            </div>
-            <span class="sr-only">Interno del salone Ricci e Capricci &amp; Barberia Leone — fotografia in aggiornamento</span>
+            <div class="absolute inset-0 opacity-40" style="background-image: repeating-linear-gradient(115deg, rgba(201,162,77,.10) 0 1px, transparent 1px 34px);"></div>
+            <div class="mode-fx absolute inset-0" style="background: linear-gradient(195deg, rgba(18,15,12,.05) 15%, rgba(18,15,12,.72) 100%), linear-gradient(0deg, var(--accent-soft), transparent 55%);"></div>
           </div>
 
           <!-- Badge sovrapposto -->
@@ -691,11 +702,11 @@
       </p>
 
       <div class="reveal mt-10 flex flex-col sm:flex-row gap-4 justify-center" style="transition-delay:.18s">
-        <a href="#" class="btn-gold mode-fx inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+        <a href="https://www.fresha.com" target="_blank" rel="noopener" class="btn-gold mode-fx inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold tracking-widest uppercase">
           Prenota Ora
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="https://wa.me/390311234567?text=Ciao!%20Vorrei%20prenotare%20un%20appuntamento" target="_blank" rel="noopener" class="btn-outline inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300">
+        <a href="https://wa.me/39031699639?text=Ciao!%20Vorrei%20informazioni%20per%20un%20appuntamento." target="_blank" rel="noopener" class="btn-outline inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold tracking-widest uppercase">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-10 4.5-10 10 0 1.77.46 3.45 1.32 4.94L2 22l5.2-1.36A9.94 9.94 0 0 0 12.04 22c5.5 0 10-4.5 10-10s-4.5-10-10-10Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.09.81.83-3-.2-.31A8.13 8.13 0 1 1 20.14 12a8.1 8.1 0 0 1-8.1 8.1Zm4.47-6.08c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.52.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
           WhatsApp
         </a>
@@ -727,7 +738,7 @@
             <a href="#" target="_blank" rel="noopener" aria-label="Pagina Facebook" class="grid place-items-center w-10 h-10 rounded-full border border-white/15 text-cream/70 hover:text-[var(--accent)] hover:border-[var(--accent)] mode-fx transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.4c0-.87.24-1.46 1.5-1.46H16.5V4.35C16.24 4.31 15.35 4.24 14.3 4.24c-2.19 0-3.69 1.34-3.69 3.79v2.47H8v3h2.6V21h2.9Z"/></svg>
             </a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Prenota su Fresha" class="grid place-items-center w-10 h-10 rounded-full border border-white/15 text-cream/70 hover:text-[var(--accent)] hover:border-[var(--accent)] mode-fx transition-colors">
+            <a href="https://www.fresha.com" target="_blank" rel="noopener" aria-label="Prenota su Fresha" class="grid place-items-center w-10 h-10 rounded-full border border-white/15 text-cream/70 hover:text-[var(--accent)] hover:border-[var(--accent)] mode-fx transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
             </a>
           </div>
@@ -743,7 +754,7 @@
             </li>
             <li class="flex items-center gap-3">
               <svg class="shrink-0 text-[var(--accent)] mode-fx" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.6.6A2 2 0 0 1 22 16.9Z"/></svg>
-              <a href="tel:+390311234567" class="hover:text-[var(--accent)] mode-fx transition-colors">+39 031 123 4567</a>
+              <a href="tel:+39031699639" class="hover:text-[var(--accent)] mode-fx transition-colors">+39 031 699639</a>
             </li>
             <li class="flex items-center gap-3">
               <svg class="shrink-0 text-[var(--accent)] mode-fx" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
@@ -796,7 +807,7 @@
        FLOATING BUTTON — mobile only
        ===================================================================== -->
   <div id="floating-cta" class="md:hidden fixed bottom-4 inset-x-4 z-50 transition-all duration-500">
-    <a href="#prenota" class="btn-gold pulse-soft mode-fx flex items-center justify-center gap-2 w-full py-4 rounded-full text-sm font-bold tracking-widest uppercase shadow-soft">
+    <a href="https://www.fresha.com" target="_blank" rel="noopener" class="btn-gold pulse-soft mode-fx flex items-center justify-center gap-2 w-full py-4 rounded-full text-sm font-bold tracking-widest uppercase shadow-soft">
       Prenota Ora
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
