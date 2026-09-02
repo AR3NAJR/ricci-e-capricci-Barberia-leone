@@ -451,20 +451,17 @@ tailwind.config = {
       </p>
     </div>
 
-    <!-- Mobile-only: breaks the card-after-card monotony. An intentional CSS-only editorial
-         panel (no external image dependency) — dark walnut texture, gold divider, oversized
-         serif glyph — rather than a hotlinked photo that could fail to load. -->
+    <!-- Mobile-only: compact editorial photo strip, reusing an image already proven to
+         load elsewhere in the page (no new external URL). Small, framed, narrative —
+         not a full-bleed block. -->
     <div class="lg:hidden mb-7 reveal" data-anim="fade-up-mobile">
-      <div class="relative rounded-sm overflow-hidden" style="aspect-ratio:16/10;
-        background:
-          radial-gradient(ellipse 70% 60% at 15% 20%, rgba(201,161,90,0.14), transparent 55%),
-          radial-gradient(ellipse 60% 50% at 85% 90%, rgba(168,112,63,0.12), transparent 60%),
-          linear-gradient(150deg, #241b13 0%, #17110c 55%, #1c1611 100%);
-        border:1px solid rgba(201,161,90,0.16);">
-        <span class="absolute -bottom-6 -right-2 font-serif italic text-[7rem] leading-none text-[color:var(--accent)]/10 select-none" aria-hidden="true">R&amp;C</span>
-        <div class="absolute inset-0 flex flex-col justify-end p-6">
-          <div class="divider-gold mb-3"></div>
-          <p class="font-serif text-xl text-cream/85">Legno, cuoio, luce calda.</p>
+      <div class="relative rounded-sm overflow-hidden img-frame" style="height:210px; border:1px solid rgba(201,161,90,0.28); box-shadow:0 14px 34px -16px rgba(0,0,0,0.55);">
+        <img data-parallax-mobile src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=900&auto=format&fit=crop" alt="Dettaglio di forbici e strumenti da barbiere su legno scuro" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#120d0a]/80 via-[#120d0a]/10 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5">
+          <div class="divider-gold mb-2"></div>
+          <p class="eyebrow !text-[0.62rem]">L'atmosfera</p>
+          <p class="font-serif text-lg text-cream/90 mt-0.5">Legno, cuoio, luce calda.</p>
         </div>
       </div>
     </div>
@@ -986,6 +983,14 @@ function initScrollAnimations(){
         opacity:1, y:0, duration:0.55, ease:'power2.out',
         scrollTrigger: { trigger: el, start:'top 92%' }
       });
+      // Subtle cinematic image-reveal for editorial photo strips (e.g. Esperienza atmosfera visual)
+      const img = el.querySelector('img[data-parallax-mobile]');
+      if (img) {
+        gsap.fromTo(img, { scale:1.05 }, {
+          scale:1, duration:0.9, ease:'power2.out',
+          scrollTrigger: { trigger: el, start:'top 92%' }
+        });
+      }
     });
   });
 }
